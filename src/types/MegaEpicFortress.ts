@@ -98,6 +98,8 @@ interface Professions {
     count: number
 }
 
+// type profession  = Record<string, number>
+
 //////////////////////////////////////////
 
 interface Resources {

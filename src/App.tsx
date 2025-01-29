@@ -1,34 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import towerImage from "../public/tower.jpg"
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+
+    <div className="grid grid-cols-2 ">
+      {/* COL 1*/}
+      <div className='grid grid-rows-12 mx-auto'>
+
+        {/* TITLE*/}
+        <div className="row-span-1 flex justify-between bg-red-500 h-full text-xs justify-center">
+          <h1 className="text-xs">Citadel of Eternal Night</h1>
+        </div>
+
+        {/* IMAGE*/}
+        <div className="row-span-6 bg-gray-500 h-full m-4">
+          <img src={towerImage} className=""/>
+        </div>
+
+        {/* DROPDOWN BY WEAPON*/}
+        <div className="row-span-1 h-full m-4">
+          <p className="text-center">dropdown by weapon</p>
+        </div>
+
+        {/* TOWERS CARDS*/}
+        <div className="row-span-3 h-full m-4">
+          <p className="text-center">CARDS</p>
+        </div>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        
+          
+      {/* COL 2*/}
+      <div className="bg-blue-500">
+          <p className="m-5 text-center">SHOW VILLAGER PROFESSION AND WORKERS</p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+  </div>
   )
 }
 
