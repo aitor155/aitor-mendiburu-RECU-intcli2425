@@ -2,13 +2,17 @@ import { FunctionComponent, useEffect, useState } from "react";
 import MegaEpicFortress from "../types/MegaEpicFortress";
 import { getTowersAndGuardsByWeaponType } from "../helpers/helpers";
 
+interface Tower {
+    name: string,
+    guards: string[]
+}
 interface DropDownProps {
     fortress: MegaEpicFortress,
-    setShowTowers: (towers: Tower[]) => void
+    setShowTowers: (towerToShow: Tower[]) => void
 }
 
 const options = [
-    {value: " ", label: "----"},
+    {value: " ", label: " "},
     {value: "Ballista" , label: "Ballista"},
     {value: "Arcane Cannon", label: "Arcane Cannon"},
     {mythic: "Elemental Bow", label: "Elemental Bow"},
@@ -26,11 +30,10 @@ const DropDownByWeapon: FunctionComponent<DropDownProps> = ({fortress, setShowTo
     },[fortress, selectedWeapon, setShowTowers]);
 
     return (
-        <div className="block text-center w-auto bg-black/30 p-5 rounded">
-            <div className="flex justify-center m-5 items-center border p-2 text-center">
-                <h1>select a weapon type: </h1>
+        <div className="block text-center p-5 rounded">
+            <div className="items-center border text-center">
                 <select 
-                className="bg-gray-500 ml-2 text-center items"
+                className=" ml-2 text-center items-center justify-center pr-100 pt-10"
                 value={selectedWeapon} 
                 onChange={(e) => setSelectedWeapon(e.target.value)}>
                 {options.map((option, index) => (
