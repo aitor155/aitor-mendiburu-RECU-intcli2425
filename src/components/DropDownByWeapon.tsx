@@ -1,36 +1,54 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import MegaEpicFortress from "../types/MegaEpicFortress";
+import { Towers, MegaEpicFortress } from "../types/MegaEpicFortress";
 import { getTowersAndGuardsByWeaponType } from "../helpers/helpers";
+import { megaEpicFortress } from "../data/data";
 
-interface Tower {
-    name: string,
-    guards: string[]
-}
+
 interface DropDownProps {
     fortress: MegaEpicFortress,
-    setShowTowers: (towerToShow: Tower[]) => void
+    setShowTowers: (towerToShow: Towers[]) => void
 }
 
-const options = [
-    {value: " ", label: " "},
-    {value: "Ballista" , label: "Ballista"},
-    {value: "Arcane Cannon", label: "Arcane Cannon"},
-    {mythic: "Elemental Bow", label: "Elemental Bow"},
-    {mythic: "Banana Launcher", label: "Banana Launcher"},
-];
+interface Option {
+    value: string,
+    label: string
+}
  
 const DropDownByWeapon: FunctionComponent<DropDownProps> = ({fortress, setShowTowers}) => {
     const [selectedWeapon, setSelectedWeapon] = useState<string>("");
 
-    //values of useRef
     useEffect(()=> {
         const towersToShow = getTowersAndGuardsByWeaponType(fortress, selectedWeapon);
         setShowTowers(towersToShow);
 
     },[fortress, selectedWeapon, setShowTowers]);
 
+
+    ////////////FUNCTIONS//////////////////
+
+    const getWeaponOptions = (fortress : MegaEpicFortress) => {
+        const options = [{ value: " ", label: " " }]; 
+        
+        fortress.defenses.towers.forEach((tower) => {
+            const weaponType  = tower.armament.weaponType;
+            assignNoEqual(weaponType, options);
+        });
+    
+        return options;
+    };
+
+    const assignNoEqual = (weaponType: string, options: Option[]) => {
+        const exists = options.some((option) => option.value === weaponType);
+    
+        if (!exists) {
+            options.push({ value: weaponType, label: weaponType });
+        }
+    }
+
+    const options = getWeaponOptions(megaEpicFortress);
+
     return (
-        <div className="block text-center p-5 rounded">
+        <div className="flex justify-center items-center rounded text-center">
             <div className="items-center border text-center">
                 <select 
                 className=" ml-2 text-center items-center justify-center pr-100 pt-10"

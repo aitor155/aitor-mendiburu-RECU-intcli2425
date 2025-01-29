@@ -1,10 +1,10 @@
-import MegaEpicFortress from "../types/MegaEpicFortress"
+import {MegaEpicFortress} from "../types/MegaEpicFortress"
 
 
 
 export const getTowersAndGuardsByWeaponType = (fortress : MegaEpicFortress, weaponType: string)=> {
 
-    const towersByWeapon = fortress.defenses.towers.filter((tower)=> tower.armament.weaponType === weaponType);
+    const towersByWeapon = fortress.defenses.towers.filter((tower)=> tower.armament?.weaponType === weaponType);
 
     const towersByName_Guardians = towersByWeapon.map((tower)=> {
         const towerName_Guards = {name: tower.name, guards: tower.guards};
@@ -22,21 +22,18 @@ export const getTowersAndGuardsByWeaponType = (fortress : MegaEpicFortress, weap
 // type professionName  = Record<"type", string>
 // type professionCount = Record<"count", number>
 
+///record type ???
+
 
 
 export const countVillagersByProfession = (fortress: MegaEpicFortress)=> {
 
-    const villagersByRole = fortress.inhabitants.roles.filter((role)=> role.role === "Villager");
+    const villagersByRole = fortress.inhabitants.roles.find((role)=> role.role === "Villager");
     
     if (villagersByRole != undefined) {
-        const villagers = villagersByRole[0].professions;
+        const villagers = villagersByRole.professions;
         return villagers
     }
-
-    
-    // for (let i = 0; i < villagersByRole.length; ++i) {
-    //     villagers.concat(villagersByRole[i].professions);
-    // }
 
     return undefined
 }

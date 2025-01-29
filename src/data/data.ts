@@ -1,4 +1,4 @@
-import MegaEpicFortress from "../types/MegaEpicFortress";
+import {MegaEpicFortress} from "../types/MegaEpicFortress";
 
 export const megaEpicFortress : MegaEpicFortress = {
 	name: "Citadel of Eternal Night",

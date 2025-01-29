@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import MegaEpicFortress from "../types/MegaEpicFortress"
+import {MegaEpicFortress} from "../types/MegaEpicFortress"
 import { countVillagersByProfession } from "../helpers/helpers";
 
 interface VillagersProps {

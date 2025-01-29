@@ -1,4 +1,4 @@
-export default interface MegaEpicFortress {
+export interface MegaEpicFortress {
     name: string,
     location: LocationInterface,
     defenses: Defenses,
@@ -39,10 +39,10 @@ interface Walls {
     enchantments: Enchantments[],
 }
 
-interface Towers {
+export interface Towers {
     name: string,
-    height: number,
-    armament: Armament,
+    height?: number,
+    armament?: Armament,
     guards: Guards[], 
 }
 
